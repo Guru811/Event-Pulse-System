@@ -1,0 +1,7 @@
+{
+  "name": "Event Pulse — Campus Experience & Ticketing Platform",
+  "description": "Dynamic festival-grade college event discovery, registration, interactive session explorer, and visual boarding pass visualizer.",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}
+

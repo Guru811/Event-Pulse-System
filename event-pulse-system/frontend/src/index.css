@@ -1,0 +1,480 @@
+:root {
+  --paper: #eef1f6;
+  --panel: #ffffff;
+  --ink: #1c2340;
+  --ink-soft: #565f82;
+  --rule: rgba(28, 35, 64, 0.16);
+  --stamp: #b03a2e;
+  --stamp-soft: #f4e4e1;
+  --confirmed: #3f7d5c;
+  --confirmed-soft: #e3ede7;
+  --waitlist: #b3801f;
+  --waitlist-soft: #f3e8d3;
+  --cancelled: #8a8f9e;
+
+  --cat-technical: #2f5d8a;
+  --cat-cultural: #8a4b7c;
+  --cat-workshop: #b08a2e;
+  --cat-sports: #3f7d5c;
+
+  --font-display: 'Fraunces', serif;
+  --font-body: 'IBM Plex Sans', sans-serif;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);
+  font-size: 15px;
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+
+a {
+  color: inherit;
+}
+
+button {
+  font-family: inherit;
+}
+
+.app-shell {
+  max-width: 880px;
+  margin: 0 auto;
+  padding: 40px 24px 80px;
+}
+
+/* ---------- header ---------- */
+
+.header {
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 24px;
+  padding-bottom: 28px;
+  border-bottom: 1px solid var(--rule);
+  margin-bottom: 32px;
+  flex-wrap: wrap;
+}
+
+.wordmark {
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 30px;
+  letter-spacing: -0.01em;
+  margin: 0;
+}
+
+.wordmark em {
+  font-style: italic;
+  font-weight: 500;
+  color: var(--stamp);
+}
+
+.tagline {
+  margin: 4px 0 0;
+  color: var(--ink-soft);
+  font-size: 13.5px;
+}
+
+.header-right {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+}
+
+.nav {
+  display: flex;
+  gap: 22px;
+}
+
+.nav button {
+  background: none;
+  border: none;
+  padding: 6px 0;
+  font-size: 14.5px;
+  color: var(--ink-soft);
+  cursor: pointer;
+  border-bottom: 2px solid transparent;
+}
+
+.nav button.active {
+  color: var(--ink);
+  border-bottom-color: var(--stamp);
+  font-weight: 500;
+}
+
+.badge-picker {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: var(--panel);
+  border: 1px solid var(--rule);
+  border-radius: 4px;
+  padding: 6px 10px;
+}
+
+.badge-picker label {
+  font-size: 12px;
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+
+.badge-picker select {
+  border: none;
+  background: none;
+  font-family: var(--font-body);
+  font-size: 13.5px;
+  color: var(--ink);
+  max-width: 150px;
+}
+
+/* ---------- section heading ---------- */
+
+.section-heading {
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+
+.section-heading h2 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 20px;
+  margin: 0;
+}
+
+.section-heading span {
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+/* ---------- ticket stub (event card) ---------- */
+
+.ticket {
+  position: relative;
+  display: flex;
+  background: var(--panel);
+  border: 1px solid var(--rule);
+  margin-bottom: 16px;
+}
+
+.ticket-main {
+  flex: 1;
+  padding: 18px 20px;
+  cursor: pointer;
+}
+
+.ticket-main:hover .ticket-title {
+  color: var(--stamp);
+}
+
+.category-dot {
+  display: inline-flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 12px;
+  color: var(--ink-soft);
+  margin-bottom: 8px;
+}
+
+.category-dot::before {
+  content: '';
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--dot-color, var(--ink-soft));
+}
+
+.ticket-title {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 19px;
+  margin: 0 0 8px;
+  transition: color 0.15s ease;
+}
+
+.ticket-meta {
+  font-size: 13px;
+  color: var(--ink-soft);
+  margin: 2px 0;
+}
+
+.ticket-stub {
+  width: 148px;
+  flex-shrink: 0;
+  border-left: 1px dashed var(--rule);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 14px 10px;
+  text-align: center;
+  gap: 10px;
+}
+
+.ticket-stub::before,
+.ticket-stub::after {
+  content: '';
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: var(--paper);
+  border: 1px solid var(--rule);
+  left: calc(100% - 148px - 8px);
+}
+
+.ticket-stub::before {
+  top: -9px;
+}
+
+.ticket-stub::after {
+  bottom: -9px;
+}
+
+.seats-number {
+  font-family: var(--font-display);
+  font-size: 30px;
+  line-height: 1;
+  font-weight: 600;
+}
+
+.seats-label {
+  font-size: 11px;
+  color: var(--ink-soft);
+}
+
+.status-stamp {
+  display: inline-block;
+  font-size: 11px;
+  font-weight: 500;
+  padding: 3px 9px;
+  border-radius: 3px;
+  letter-spacing: 0.01em;
+}
+
+.status-PUBLISHED,
+.status-CONFIRMED {
+  background: var(--confirmed-soft);
+  color: var(--confirmed);
+}
+
+.status-WAITLISTED {
+  background: var(--waitlist-soft);
+  color: var(--waitlist);
+}
+
+.status-CANCELLED,
+.status-COMPLETED {
+  background: rgba(138, 143, 158, 0.15);
+  color: var(--cancelled);
+}
+
+.status-ONGOING {
+  background: var(--stamp-soft);
+  color: var(--stamp);
+}
+
+/* ---------- detail panel ---------- */
+
+.panel {
+  background: var(--panel);
+  border: 1px solid var(--rule);
+  padding: 24px 26px;
+  margin-bottom: 20px;
+}
+
+.panel-back {
+  background: none;
+  border: none;
+  padding: 0;
+  color: var(--ink-soft);
+  font-size: 13px;
+  cursor: pointer;
+  margin-bottom: 16px;
+}
+
+.panel-back:hover {
+  color: var(--ink);
+}
+
+.panel h2 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 24px;
+  margin: 0 0 6px;
+}
+
+.panel-description {
+  color: var(--ink-soft);
+  margin: 14px 0 18px;
+  max-width: 62ch;
+}
+
+.session-list {
+  border-top: 1px solid var(--rule);
+  padding-top: 14px;
+  margin-top: 14px;
+}
+
+.session-row {
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  padding: 8px 0;
+  font-size: 13.5px;
+  border-bottom: 1px solid var(--rule);
+}
+
+.session-row:last-child {
+  border-bottom: none;
+}
+
+.session-room {
+  color: var(--ink-soft);
+  white-space: nowrap;
+}
+
+.register-row {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-top: 20px;
+}
+
+.btn-primary {
+  background: var(--stamp);
+  color: #fff;
+  border: none;
+  padding: 10px 20px;
+  font-size: 14px;
+  cursor: pointer;
+}
+
+.btn-primary:disabled {
+  background: var(--cancelled);
+  cursor: not-allowed;
+}
+
+.btn-primary:not(:disabled):hover {
+  background: #93301f;
+}
+
+.hint-text {
+  font-size: 13px;
+  color: var(--ink-soft);
+}
+
+.feedback-banner {
+  font-size: 13.5px;
+  padding: 10px 14px;
+  border: 1px solid var(--rule);
+  margin-top: 16px;
+  background: var(--confirmed-soft);
+  color: var(--confirmed);
+}
+
+.feedback-banner.error {
+  background: var(--stamp-soft);
+  color: var(--stamp);
+}
+
+/* ---------- tickets (my tickets page) ---------- */
+
+.ticket-row {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 16px;
+  background: var(--panel);
+  border: 1px solid var(--rule);
+  padding: 16px 20px;
+  margin-bottom: 12px;
+}
+
+.ticket-row-left h3 {
+  font-family: var(--font-display);
+  font-weight: 500;
+  font-size: 17px;
+  margin: 0 0 6px;
+}
+
+.ticket-code {
+  font-family: var(--font-body);
+  font-size: 12px;
+  color: var(--ink-soft);
+}
+
+.ticket-row-right {
+  text-align: right;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  align-items: flex-end;
+}
+
+.amount {
+  font-family: var(--font-display);
+  font-size: 16px;
+}
+
+/* ---------- empty / loading states ---------- */
+
+.empty-state {
+  border: 1px dashed var(--rule);
+  padding: 40px 20px;
+  text-align: center;
+  color: var(--ink-soft);
+}
+
+.empty-state strong {
+  display: block;
+  color: var(--ink);
+  font-family: var(--font-display);
+  font-size: 17px;
+  margin-bottom: 6px;
+  font-weight: 500;
+}
+
+.loading-text {
+  color: var(--ink-soft);
+  padding: 20px 0;
+}
+
+@media (max-width: 560px) {
+  .ticket {
+    flex-direction: column;
+  }
+
+  .ticket-stub {
+    width: auto;
+    border-left: none;
+    border-top: 1px dashed var(--rule);
+    flex-direction: row;
+    justify-content: space-between;
+    padding: 12px 20px;
+  }
+
+  .ticket-stub::before,
+  .ticket-stub::after {
+    display: none;
+  }
+
+  .header-right {
+    width: 100%;
+    justify-content: space-between;
+  }
+}
